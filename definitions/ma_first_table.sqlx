@@ -14,5 +14,5 @@ config {
 SELECT 
 device.browser, 
 COUNT(*) as sesiones 
-FROM `bigquery-public-data.google_analytics_sample.ga_sessions_20170801` 
+FROM ${dataform.projectConfig.vars.source_table_id}
 GROUP BY 1
