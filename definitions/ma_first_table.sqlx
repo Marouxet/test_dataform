@@ -15,4 +15,5 @@ SELECT
 device.browser, 
 COUNT(*) as sesiones 
 FROM ${dataform.projectConfig.vars.source_table_id}
+WHERE _TABLE_SUFFIX BETWEEN "20170801" AND "20170801"
 GROUP BY 1
