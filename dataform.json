@@ -3,6 +3,10 @@
   "assertionSchema": "dataform_assertions",
   "warehouse": "bigquery",
   "defaultDatabase": "mightyhive-data-science-poc",
-  "defaultLocation": "US"
+  "defaultLocation": "US",
+
+  "vars": {
+    "source_table_id": "`bigquery-public-data.google_analytics_sample.ga_sessions_*`"
+  }
 }
     
