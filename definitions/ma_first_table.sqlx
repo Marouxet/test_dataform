@@ -10,10 +10,23 @@ config {
 }
 
 -- The rest of a SQLX file contains your SELECT statement used to create the table.
-
+/*
 SELECT 
 device.browser, 
 COUNT(*) as sesiones 
 FROM ${dataform.projectConfig.vars.source_table_id}
 WHERE _TABLE_SUFFIX BETWEEN "20170801" AND "20170801"
 GROUP BY 1
+
+*/
+SELECT 
+  fullVisitorId, 
+  ARRAY_AGG(geoNetwork.city ORDER BY visitStartTime)[OFFSET(0)] as first_city,
+  COUNT(*) as sesiones,
+  LOGICAL_OR(IF(totals.transactions is null, False, True)) as transaction,
+FROM 
+  ${dataform.projectConfig.vars.source_table_id}
+WHERE 
+  _TABLE_SUFFIX BETWEEN "${constants.start_date}" AND "${constants.end_date}"
+GROUP BY 1
+
